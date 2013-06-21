@@ -80,8 +80,9 @@ is the whole point of them, but packagers blithely decide that we're doing it
 wrong and don't know how to package our own software and give us a lager package
 for our package manager.
 
-We have the same problem with one of our backend libraries, leveldb. Originally
-developed as a database for web browsers for like html5's indexeddb, Basho has
+We have the same problem with one of our backend libraries, leveldb. Leveldb is
+a key/value database originally developed by Google for implementing things like
+HTML5's indexeddb feature in Google Chrome. Basho has
 invested some serious engineering effort in adapting it as one of the backends
 that Riak can be configured to use to store data on disk. Problem is, our
 usecase diverges significantly from what Google wants to use it for, so we've
