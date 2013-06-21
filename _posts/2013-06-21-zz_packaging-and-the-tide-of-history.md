@@ -17,7 +17,7 @@ the kind of packaging principles that package maintainers cling to. Ruby has
 [bundler](http://gembundler.com/), node has (well, a bunch of things, [npm
 shrinkwrap]((https://npmjs.org/doc/shrinkwrap.html) seems to be the
 latest hotness). There's even this thing called [docker](http://www.docker.io/)
-that lets you build a while mini environment with tailored versions of anything,
+that lets you build a whole mini environment with tailored versions of anything,
 for deploying polyglot applications. I could probably find more examples. The
 point is, all this stuff has emerged in the past few years (with the exception
 of erlang releases, which have been around for a long time, but have recently
