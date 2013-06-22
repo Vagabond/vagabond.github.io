@@ -118,3 +118,5 @@ was twenty years ago, software has changed, hardware has changed and maybe it is
 time to think about these choices again. At least grant us, the developers of the
 software, the benefit of the doubt. We know how our software works and how it
 should be packaged. Honest.
+
+Update: There's a follow up post [here](http://localhost:4000/2013/06/21/zz_packaging-and-the-tide-of-history/) and a suprisingly insightful HN discussion [here](https://news.ycombinator.com/item?id=5920921).
