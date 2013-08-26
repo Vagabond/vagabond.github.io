@@ -2,7 +2,7 @@
 layout: post
 title: "Packaging and the tide of history"
 description: ""
-category: 
+category: Rants
 tags: []
 ---
 {% include JB/setup %}

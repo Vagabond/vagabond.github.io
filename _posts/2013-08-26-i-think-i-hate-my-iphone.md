@@ -2,7 +2,7 @@
 layout: post
 title: "I think I hate my iPhone"
 description: ""
-category: 
+category: Rants
 tags: []
 ---
 {% include JB/setup %}

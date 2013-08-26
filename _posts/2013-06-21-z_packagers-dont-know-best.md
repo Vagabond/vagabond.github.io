@@ -2,7 +2,7 @@
 layout: post
 title: "Packagers don't know best"
 description: ""
-category: 
+category: Rants
 ---
 {% include JB/setup %}
 
