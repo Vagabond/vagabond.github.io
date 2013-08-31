@@ -7,7 +7,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-[Last time](automotive/2013/08/27/truck-vs-plow---part-1/) our hero had just managed to dry-fit the plow brackets to the truck frame, we now resume that thrilling tale where we left off...
+[Last time](/automotive/2013/08/27/truck-vs-plow---part-1/) our hero had just managed to dry-fit the plow brackets to the truck frame, we now resume that thrilling tale where we left off...
 
 To make the brackets fit the frame rail, they had to be curved. So I eyeballed where the frame starts to curve, did some marking and brandished my angle grinder:
 
