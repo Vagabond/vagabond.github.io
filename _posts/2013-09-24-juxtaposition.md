@@ -9,8 +9,8 @@ tags: []
 
 Presented without comment:
 
-![](assets/images/juxtaposition.png)
+![](/assets/images/juxtaposition.png)
 
 ...
 
-![](assets/images/juxtaposition2.png)
+![](/assets/images/juxtaposition2.png)
