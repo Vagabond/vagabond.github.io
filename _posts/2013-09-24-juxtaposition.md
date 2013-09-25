@@ -9,6 +9,7 @@ tags: []
 
 Presented without comment:
 
+
 ![](/assets/images/juxtaposition.png)
 
 ...
