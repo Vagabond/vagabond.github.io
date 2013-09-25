@@ -1,9 +1,7 @@
 ---
 layout: post
 title: "Juxtaposition"
-description: ""
 category: 
-tags: []
 ---
 {% include JB/setup %}
 
