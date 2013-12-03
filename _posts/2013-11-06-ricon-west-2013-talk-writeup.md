@@ -345,7 +345,7 @@ request must match both to be granted by this ACL.
 riak-admin security grant riak_kv.put ON mytype TO andrew
 ```
 
-Now this grant is a little differen. We're granting on the *whole* bucket type
+Now this grant is a little different. We're granting on the *whole* bucket type
 at once, such that any bucket under that bucket type will satisfy the ACL. This
 can be handy if your application needs to dynamically create buckets, but you
 still want to have separate ACL rules for different parts of your data.
