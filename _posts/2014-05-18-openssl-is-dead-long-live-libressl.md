@@ -2,7 +2,7 @@
 layout: post
 title: "OpenSSL is dead, long live LibreSSL"
 description: ""
-category: 
+category: rants
 tags: []
 ---
 {% include JB/setup %}
