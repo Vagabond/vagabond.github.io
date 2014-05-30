@@ -15,7 +15,7 @@ So Go is kind of a better C, it has nice things like type inference:
 var x int = 5
 ```
 
-Can, and usuallu should be written as:
+Can, and usually should be written as:
 
 ```
 x := 5
@@ -25,7 +25,7 @@ That's nice.
 
 The For loop is sort of like a generic C for loop on steroids. The switch statement doesn't have fallthrough, the if statement doesn't need parentheses (and *requires* curly braces, to prevent those stupid braceless oneliners C allows). It has a native hash table, which is handy. These are all nice things.
 
-However, now things start to get a little weird. Function heads are pretty wacky (from a C perspective), really in general type declarations feel 'backwards'. Looking at it objectively they do sort of flow more logically, but it feels like bucking a 50 year trend is a little silly, given all the other borrowed syntax.
+However, now things start to get a little weird. Function heads are pretty wacky (from a C perspective), in general, type declarations feel 'backwards'. Looking at it objectively they do sort of flow more logically, but it feels like bucking a 50 year trend is a little silly, given all the other borrowed syntax.
 
 Multiple returns are nice (although you could just have tuples and destructuring/pattern matching), closures are handy (although C function pointers usually are good enough, really). I like the Struct/Method stuff better than C++ style insanity. Go doesn't have tail call optimization (as far as I can tell) which is kind of unfortunate. The error/exception handling is kind of annoying, but I guess it works...
 
@@ -42,3 +42,5 @@ I don't know. Go currently feels to me like a missed opportunity. Mozilla's Rust
 Now, gentle reader, there IS a language that is well suited for parallel, independant, fault-tolerant task execution: Erlang. I'm clearly biased (although I've tried most of the 'cool' languages at this point, so I'm at least informed as well), but Erlang's process model makes it almost a joy to deal with both parallel execution and fault tolerance. I built a (albeit simple) server in 20 minutes once that ended up in production for *years*. Because I wrote with an eye towards fault tolerance, it was tolerant of all sorts of stupid invalid inputs that came its way, without crashing the server itself, just the particular process handling that connection. In Go, from what I can tell, you'd end up with tons of defensive programming and still no gurantees you handled all the edge cases. I've been there, I know how to program like that, and how long it takes to flush all the bugs out. Alternatively I have sat on an Erlang shell, watching processes crash, writing the patch (if needed) and hot-code reloading it. New connections hitting that same bug magically start to work.
 
 I don't expect this rant to stem the tide of "we rewrote our <core service> in Go and made it 65535% faster with 1% of the lines of code", but knowing what I know now, I'll probably treat them with even less creduility than before. Speed and LOC are not all a service needs to provide (usually).
+
+Time will tell if my opinions change, gonna be dealing with Go for a while and will have to make the best of it.
