@@ -110,7 +110,7 @@ state was wrong, mainly around when it changed between the 3 possible states.
 With those issues [fixed](https://github.com/basho/poolboy/commit/c2ba14ccd5dc6dc882d43db7d3190b94f033b185), I moved on to checking what happened if a worker died
 while it was checked in. I wrote a command that would check out a worker, check
 it back in and then kill it. QuickCheck didn't find any bugs initially, but
-then I remembered [an issue poolboy had]https://github.com/devinus/poolboy/pull/4] where poolboy was using tons of ram
+then I remembered [an issue poolboy had](https://github.com/devinus/poolboy/pull/4) where poolboy was using tons of ram
 because it was keeping track of way too many process monitors. Whenever you
 check a worker out of poolboy, poolboy monitors the pid holding the worker so
 if it dies, poolboy can also kill the worker and create some free space in the
