@@ -9,15 +9,13 @@ tags: [erlang, networking]
 
 So, the other week, someone in #erlounge linked to an interesting
 [Reddit post](http://www.reddit.com/r/golang/comments/2y5nc0/fault_tolerance_in_go/cp7m29l)
-by someone switching from Erlang to Go:
-
-
+by someone switching from Erlang to Go.
 
 I actually strongly disagree with almost everything he says, but the really
 interesting part of the thread is when he starts talking about sending 10Mb
 messages around and the fact that that 'breaks' the cluster. Other commentators
 on the thread rightly point out that this is terrible for the heartbeats that
-distributed erlang uses to maintain cluster connectivity and that you shouldn't
+distributed Erlang uses to maintain cluster connectivity and that you shouldn't
 send large objects like that around.
 
 And this is where I started thinking. In the Erlang community this is a known
@@ -29,7 +27,7 @@ recommends against large objects).
 So, even Riak is doing what 'everyone knows' not to do. Why isn't there a
 library for that? I asked myself this one night at 2am before a flight to SFO
 the next morning, and could not come up with an answer. So, I did the logical
-thing, I turned my caremad into a prototype library.
+thing; I turned my caremad into a prototype library.
 
 After some Andy Gross style airplane-hacking, I had a basic prototype that
 would, on demand, stand up a pool of TCP connections to another node (using the
@@ -45,15 +43,18 @@ So, I looked at how disterl does it. A bunch of gnarly C later, I had a BIF of
 my own: [erlang:send_term/2](https://gist.github.com/Vagabond/efb0c1563ef7b94b3b27)
 
 This, amazingly, worked, but with large messages (30+MB) I ended up causing
-scheduler collapse because my BIF doesn't yield back to the VM or increment
+[scheduler
+collapse](http://erlang.org/pipermail/erlang-bugs/2013-May/003529.html) because my BIF doesn't yield back to the VM or increment
 reduction counts. I looked at adding that to the BIF and basically gave up.
 
 So, I left it on the backburner for a couple weeks. When I came back, I had some
 fresh insights. The first was: what if we had a 'term_to_iolist' function that
-would preserve sharing? So I went off and implemented a half-assed one in Erlang,
-that mainly tries to encode the common erlang types into the distributed Erlang
-binary format but using iolists, not binaries (for those unfamiliar with Erlang,
-iolists are often better when generating data to be written to files/sockets as
+would preserve sharing? So I went off and implemented a [half-assed](https://github.com/Vagabond/teleport/blob/c785e40b03319dd1b8431423465233021c01d20c/src/teleport.erl#L83-L123)
+one in Erlang,
+that mainly tries to encode the common erlang types into the Erlang [external
+term format](http://erlang.org/doc/apps/erts/erl_ext_dist.html)
+but using iolists, not binaries (for those unfamiliar with Erlang,
+[iolists](http://prog21.dadgum.com/70.html) are often better when generating data to be written to files/sockets as
 they can preserve sharing of embedded binaries, along with other things). For
 all the 'hard' types, my code punts and calls term_to_binary and chops off the
 leading '131' byte.
@@ -121,6 +122,17 @@ teleport socket. This is something that probably should change (the Riak Get/Put
 use case would need it, for example). Another difference is that, because we're
 using a pool of connections, the ordering of messages is not guaranteed at all.
 If you need ordered messages, this is probably not the library for you.
+
+If you want to compare performance on your own machine, just run
+
+```
+./rebar3 ct
+```
+
+The common_test suite will stand up a 6 node cluster, start 6 workers on each,
+and have them all send a 10mb binary around the 'ring' so each node sees each
+binary. It does this for both disterl and for teleport and reports the
+individual times in microseconds, and the average time in seconds.
 
 Finally, I'm not actually using this for anything, nor do I have any immediate
 plans to use it. I mostly did it to see if I could do it, and to see if such a
