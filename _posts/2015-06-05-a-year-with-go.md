@@ -26,13 +26,13 @@ Coverage
 
 The Go coverage tool is, frankly, a hack. It only works on single files at a time and it works by inserting lines like this:
 
-```go
+```
 GoCover.Count[n] = 1
 ```
 
 where `n` is the branch id in the file. It also adds a giant global struct at the end of the file:
 
-```gol
+```
 var GoCover = struct {
         Count     [7]uint32
         Pos       [3 * 7]uint32
@@ -67,7 +67,7 @@ Benchmarking
 
 The benchmarking tool is a similar thing, it looks great until you actually look into how it works. What it ends up doing is wrapping your benchmark in a for loop with a variable iteration count. Then the benchmark tool increments the iteration count until the benchmark runs 'long enough' (default is 1s) and then it divides the execution time by the iterations. Not only does this include the for loop time in the benchmark, it also masks outliers, all you get is a naive average execution time per iteration. This is the actual code from benchmark.go:
 
-```go
+```
 func (b *B) nsPerOp() int64 {
     if b.N <= 0 {
         return 0
@@ -128,7 +128,7 @@ I also tire of casting between byte[] and string, and messing with arrays/slices
 
 There's also the whole nonsense of [:], ... and append, check this out:
 
-```go
+```
 iv = append(iv, truncatedIv[:]...)
 ```
 
@@ -141,29 +141,29 @@ Some of Go's stdlib is pretty nice, the crypto stuff is a lot less clumsy than t
 
 I *do* have quite a big problem with the 'net' package. Unlike regular socket programming, you don't get to configure the socket the way you want. Want to toggle an arbitrary sockopt like IP_RECVPKTINFO? Good luck. The only way to do that is via the 'syscall' package, which is the laziest wrapper around the POSIX interface I've seen in a while (reminds me of some old PHP bindings). Even better, you can't get the file descriptor out of a connection initiated with the 'net' package, you get to standup the socket *entirely* with the syscall interface:
 
-```go
+```
 fd, err := syscall.Socket(syscall.AF_INET6, syscall.SOCK_DGRAM, 0)
-    if err != nil {
-        rlog.Fatal("failed to create socket", err.Error())
-    }
+if err != nil {
+    rlog.Fatal("failed to create socket", err.Error())
+}
 rlog.Debug("socket fd is %d\n", fd)
 
 err = syscall.SetsockoptInt(fd, syscall.IPPROTO_IPV6, syscall.IPV6_RECVPKTINFO, 1)
-    if err != nil {
-        rlog.Fatal("unable to set IPV6_RECVPKTINFO", err.Error())
-    }
+if err != nil {
+    rlog.Fatal("unable to set IPV6_RECVPKTINFO", err.Error())
+}
 
 err = syscall.SetsockoptInt(fd, syscall.IPPROTO_IPV6, syscall.IPV6_V6ONLY, 1)
-    if err != nil {
-        rlog.Fatal("unable to set IPV6_V6ONLY", err.Error())
-    }
+if err != nil {
+    rlog.Fatal("unable to set IPV6_V6ONLY", err.Error())
+}
 
 addr := new(syscall.SockaddrInet6)
     addr.Port = UDPPort
 
     rlog.Notice("UDP listen port is %d", addr.Port)
 
-err = syscall.Bind(fd, addr)
+    err = syscall.Bind(fd, addr)
     if err != nil {
         rlog.Fatal("bind error ", err.Error())
     }
