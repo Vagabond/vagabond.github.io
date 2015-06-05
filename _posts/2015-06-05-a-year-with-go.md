@@ -30,7 +30,7 @@ The Go coverage tool is, frankly, a hack. It only works on single files at a tim
 GoCover.Count[n] = 1
 ```
 
-where n is the branch id in the file. It also adds a giant global struct at the end of the file:
+where `n` is the branch id in the file. It also adds a giant global struct at the end of the file:
 
 ```golang
 var GoCover = struct {
@@ -87,7 +87,7 @@ One of the things people tote about Go is the fast compile speed. From what I ca
 go get
 ------
 
-The less said about this idea the better, the fact that Go users now say not to use it, but apparently are making no move to actually deprecate/remove it is unfortunate, as is the lack of a 'official' replacment.
+The less said about this idea the better, the fact that Go users now say not to use it, but apparently are making no move to actually deprecate/remove it is unfortunate, as is the lack of an 'official' replacment.
 
 $GOPATH
 -------
