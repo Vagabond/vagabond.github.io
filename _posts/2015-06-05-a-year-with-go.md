@@ -24,7 +24,7 @@ Go's tooling is really weird, on the surface it has some really nice tools, but 
 Coverage
 --------
 
-The Go coverage tool is, frankly a hack. It only works on single files at a time and it works by inserting lines like this:
+The Go coverage tool is, frankly, a hack. It only works on single files at a time and it works by inserting lines like this:
 
 ```golang
 GoCover.Count[n] = 1
@@ -122,4 +122,50 @@ The language
 
 I genuniely don't enjoy writing Go. Either I'm battling the limited type system, casting everything to interface{} or copy/pasting code to do pretty much the same thing with 2 kinds of structs. Every time I want to add a new feature it feels like I'm adding more struct definitions and bespoke code for working with them. How is this better than C structs with function pointers, or writing things in a functional style where you have smart data structures and dumb code? Don't even get me started on the anonymous struct nonsense.
 
+I also, apparently, don't understand Go's pointers (C pointers I understand fine). I've literally had cases where just dropping a * in front of something has made it magically work (but it compiled without one). Why the heck is Go making me care about pointers at all if it is a GC'd language?
 
+I also tire of casting between byte[] and string, and messing with arrays/slices. I understand why they're there, but it feels unnecessarily low level given the rest of Go.
+
+The Stdlib
+----------
+
+Some of Go's stdlib is pretty nice, the crypto stuff is a lot less clumsy than the shitty OpenSSL wrapper lots of languages give you. I don't really enjoy the Go documentation though, especially when interfaces are involved. I usually have to go read the source code to figure out what is actually going on. "Implements the X method" isn't that useful if I don't know what X is supposed to do.
+
+I *do* have quite a big problem with the 'net' package. Unlike regular socket programming, you don't get to configure the socket the way you want. Want to toggle an arbitrary sockopt like IP_RECVPKTINFO? Good luck. The only way to do that is via the 'syscall' package, which is the laziest wrapper around the POSIX interface I've seen in a while (reminds me of some old PHP bindings). Even better, you can't get the file descriptor out of a connection initiated with the 'net' package, you get to standup the socket *entirely* with the syscall interface:
+
+```golang
+    fd, err := syscall.Socket(syscall.AF_INET6, syscall.SOCK_DGRAM, 0)
+    if err != nil {
+        rlog.Fatal("failed to create socket", err.Error())
+    }
+    rlog.Debug("socket fd is %d\n", fd)
+
+    err = syscall.SetsockoptInt(fd, syscall.IPPROTO_IPV6, syscall.IPV6_RECVPKTINFO, 1)
+    if err != nil {
+        rlog.Fatal("unable to set IPV6_RECVPKTINFO", err.Error())
+    }
+
+    err = syscall.SetsockoptInt(fd, syscall.IPPROTO_IPV6, syscall.IPV6_V6ONLY, 1)
+    if err != nil {
+        rlog.Fatal("unable to set IPV6_V6ONLY", err.Error())
+    }
+
+    addr := new(syscall.SockaddrInet6)
+    addr.Port = UDPPort
+
+    rlog.Notice("UDP listen port is %d", addr.Port)
+
+    err = syscall.Bind(fd, addr)
+    if err != nil {
+        rlog.Fatal("bind error ", err.Error())
+    }
+```
+
+And then you get the joy of passing/receiving byte[] parameters to/from the syscall functions. Constructing/destructuring C structures from Go is super-fun.
+
+Apparently the reason for this madness is the 'net' package assumes the sockopts are set up a specific way so the socket polling can work? I don't know for sure but I know it makes any 'fancy' network programming pretty annoying and dubiously portable.
+
+Conclusion
+==========
+
+I just don't understand the point of Go. If I wanted a systems language, I'd use C/D/Rust, if I wanted a language built around concurrency I'd use Erlang or Haskell. The only place I can see Go shining is for stuff like portable command line utilities where you want to ship a static binary that Just Works(tm). For interactive tasks I think it would be fine, I just don't think it is particularly well suited to long-running servery things. It also probably looks attractive to Ruby/Python/Java developers, which is where I think a lot of Go programmers come from. Speaking of Java, I wouldn't be surprised to see Go end up as the 'new Java' given the easier deploy story and the similar sort of vibe I get from the language. If you're just looking for a 'better' Ruby/Python/Java, Go might be for you, but I would encourage you to look further afield. Good languages help evolve your approach to programming; LISP shows you the idea of code as data, C teaches you about working with the machine at a lower level, Ruby teaches you about message passing & lambdas, Erlang teaches you about concurrency and fault tolerance, Haskell teaches you about real type systems and purity, Rust presumably teaches you about sharing memory in a concurrent environment. I just don't think I got much from learning Go.
