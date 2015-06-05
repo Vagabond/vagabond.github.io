@@ -3,7 +3,7 @@ layout: post
 title: "A week with Go"
 description: ""
 category: rants
-tags: []
+tags: [golang]
 ---
 {% include JB/setup %}
 

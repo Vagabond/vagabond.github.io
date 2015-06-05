@@ -126,6 +126,14 @@ I also, apparently, don't understand Go's pointers (C pointers I understand fine
 
 I also tire of casting between byte[] and string, and messing with arrays/slices. I understand why they're there, but it feels unnecessarily low level given the rest of Go.
 
+There's also the whole nonsense of [:], ... and append, check this out:
+
+```golang
+iv = append(iv, truncatedIv[:]...)
+```
+
+This converts the array 'truncatedIv' into a slice of all the elements, explodes the slice to be an argument list, and appends those arguments to 'iv'. append() here is a special magic builtin that works for any slices (you might even say it was generic). You have to reassign the result of the append() call to the variable being appended to because append *sometimes*, depending on the size of the array underlying the slice, will append in-place and sometimes will allocate a new array and return that. It is basically realloc(3) for Go.
+
 The Stdlib
 ----------
 
