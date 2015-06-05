@@ -87,7 +87,7 @@ One of the things people tote about Go is the fast compile speed. From what I ca
 go get
 ------
 
-The less said about this idea the better, the fact that Go users now say not to use it, but apparently are making no move to actually deprecate/remove it is unfortunate, as is the lack of an 'official' replacment.
+The less said about this idea the better, the fact that Go users now say not to use it, but apparently are making no move to actually deprecate/remove it is unfortunate, as is the lack of an 'official' replacement.
 
 $GOPATH
 -------
