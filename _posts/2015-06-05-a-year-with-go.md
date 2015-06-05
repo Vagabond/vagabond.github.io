@@ -7,7 +7,7 @@ tags: [golang]
 ---
 {% include JB/setup %}
 
-So, it has [been a year](rants/2014/05/30/a-week-with-go/) I've been working with Go. Last week I removed it from production.
+So, it has [been a year](/rants/2014/05/30/a-week-with-go/) I've been working with Go. Last week I removed it from production.
 
 Re-reading my impressions after just a week, I pretty much stand by what I said back then, but there's a few other things that I'd like talk about, and amplify some points from the previous post.
 
