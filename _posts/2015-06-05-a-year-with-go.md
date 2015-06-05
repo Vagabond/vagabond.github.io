@@ -159,14 +159,14 @@ if err != nil {
 }
 
 addr := new(syscall.SockaddrInet6)
-    addr.Port = UDPPort
+addr.Port = UDPPort
 
-    rlog.Notice("UDP listen port is %d", addr.Port)
+rlog.Notice("UDP listen port is %d", addr.Port)
 
-    err = syscall.Bind(fd, addr)
-    if err != nil {
-        rlog.Fatal("bind error ", err.Error())
-    }
+err = syscall.Bind(fd, addr)
+if err != nil {
+    rlog.Fatal("bind error ", err.Error())
+}
 ```
 
 And then you get the joy of passing/receiving byte[] parameters to/from the syscall functions. Constructing/destructuring C structures from Go is super-fun.
