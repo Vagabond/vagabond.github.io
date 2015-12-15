@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Encryption: you can't put the genine back into the bottle"
+title: "Encryption: you can't put the Genie back into the bottle"
 description: ""
 category: rants
 tags: [security]
