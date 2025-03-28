@@ -54,7 +54,8 @@ that it no longer ran well under Windows 2000 and you had to use something
 called "DOSBox" to run it. However, I could never get the game to "feel" right
 under DOSBox, no matter how much I tweaked the cycles or the settings. I had
 also, in the intervening years, learned how to program, primarily in a "new"
-language called Ruby. I decided I was going to try to recreate the game using
+language called Ruby. I decided I was going to try to [recreate the
+game](https://github.com/Vagabond/rubyomf2097) using
 Ruby and a game engine called [Gosu](https://www.libgosu.org/). I had done a bit
 of OpenGL and C++ programming before this, and decided I wanted nothing to do
 with it, so Ruby/Gosu let me focus on the parts that I found interesting.
@@ -79,8 +80,9 @@ the way). There was just too much unknown about how the game worked, and things
 seemed to be much more complex than they might appear at first glance. I did
 remain around the community, and in the #omf IRC channel on Freenode (RIP).
 
-Then, sometime in 2012, someone called "katajakasa" posted about their OMF2097
-remake, this time in C++. I had been programming professionally for several
+Then, sometime in 2012, someone called "katajakasa" posted about
+[their OMF2097 remake](https://github.com/katajakasa/old-omf2097-engine-remake),
+this time in C++. I had been programming professionally for several
 years by then, and had done a fair amount of C programming. I also had done
 enough C++ to realize I really didn't like it, so I proposed joining forces if
 he agreed to switch to C. He agreed so he and I and another OMF2097 fan from
