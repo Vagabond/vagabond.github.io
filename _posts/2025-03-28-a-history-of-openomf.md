@@ -50,12 +50,13 @@ Several years later, I had graduated high school (barely), dropped out of
 college (more school just wasn't what I could do), had spent a year abroad
 living in Germany, and then returned home to Ireland, at a bit of a loss with
 what to do next. For some reason I decided to pick up OMF2097 again. I found
-that it no longer ran well under Windows 2000 and you had to use something
-called "DOSBox" to run it. However, I could never get the game to "feel" right
-under DOSBox, no matter how much I tweaked the cycles or the settings. I had
-also, in the intervening years, learned how to program, primarily in a "new"
-language called Ruby. I decided I was going to try to [recreate the
-game](https://github.com/Vagabond/rubyomf2097) using
+that, while the game had had networking support added and the game itself had
+been made freeware in 1999, it no longer ran well under Windows 2000 and you
+had to use something called "DOSBox" to run it. However, I could never get the
+game to "feel" right under DOSBox, no matter how much I tweaked the cycles or
+the settings. I had also, in the intervening years, learned how to program,
+primarily in a "new" language called Ruby. I decided I was going to try to
+[recreate the game](https://github.com/Vagabond/rubyomf2097) using
 Ruby and a game engine called [Gosu](https://www.libgosu.org/). I had done a bit
 of OpenGL and C++ programming before this, and decided I wanted nothing to do
 with it, so Ruby/Gosu let me focus on the parts that I found interesting.
@@ -167,7 +168,10 @@ incompatibilities until we reach 1.0.
 
 We are also exploring a mod framework for the engine, to allow for things like
 higher resolution assets, rebalancing, new arenas, enhanced features for
-tournament mode, etc.
+tournament mode, etc. Our project is actually one of the only open source
+fighting game engines, and it has a unique lineage to all the other ones
+(because OMF2097 itself was a bit of a weird fighting game), so the idea of
+total conversions or other changes for the engine would also be possible.
 
 If any of this sounds interesting, you're welcome to swing by our
 [Discord](https://discord.gg/7CPPzab) or
