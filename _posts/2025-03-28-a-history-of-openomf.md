@@ -71,8 +71,9 @@ around with updating the representation of the data as I learned more about it.
 
 After a little while, I had something that looked a bit like a game (although it
 didn't really act like one). I created a RubyForge (RIP) project for it called
-rubyomf2097 and posted about it to the OMF forums. People were interested, but
-cynical it was going to lead anywhere (apparently I was not the first person to
+rubyomf2097 and posted about it to the [OMF
+forums](https://web.archive.org/web/20081231224855/http://www.omf2097.com/~forum/viewthread.php?tid=193).
+People were interested, but cynical it was going to lead anywhere (apparently I was not the first person to
 tilt at this windmill, although I believe I got the furthest). Eventually life
 got in the way, and I sort of stalled out on the project (although I had
 developed some tools for editing the asset files and learned a whole bunch along
